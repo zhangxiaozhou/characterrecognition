@@ -8,8 +8,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RecognitionService {
 
@@ -112,18 +111,44 @@ public class RecognitionService {
                     tempLeft = left;
                 }
 
-                System.out.print(wordResult.getWords());
+                System.out.println(wordResult.getWords());
             }
 
         }
 
+        System.out.println("====================================================================================================================");
+
     }
 
     public static void main(String[] args) {
-        try {
-            new RecognitionService().recognition("/home/allen/111.jpg");
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        String path = "/home/allen/weixin";
+
+        File file = new File(path);
+
+        File[] files = file.listFiles();
+
+        List<String> fileNames = new ArrayList<>();
+        for(int i=0; i<files.length; i++){
+            fileNames.add(files[i].getAbsolutePath());
+        }
+
+        fileNames.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return  o1.compareTo(o2);
+            }
+        });
+
+        for(String fileName : fileNames){
+
+            //System.out.println(fileName);
+
+            try {
+                new RecognitionService().recognition(fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

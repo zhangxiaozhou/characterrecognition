@@ -59,7 +59,7 @@ public class HttpUtil {
         Map<String, List<String>> headers = connection.getHeaderFields();
         // 遍历所有的响应头字段
         for (String key : headers.keySet()) {
-            System.err.println(key + "--->" + headers.get(key));
+            //System.err.println(key + "--->" + headers.get(key));
         }
         // 定义 BufferedReader输入流来读取URL的响应
         BufferedReader in = null;
@@ -71,7 +71,7 @@ public class HttpUtil {
             result += getLine;
         }
         in.close();
-        System.err.println("result:" + result);
+        //System.err.println("result:" + result);
         return result;
     }
 }
